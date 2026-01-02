@@ -6,25 +6,151 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [courseDropdown, setCourseDropdown] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('programming');
 
-  const courseCategories = [
-    {
+  const courseCategories = {
+    java: {
+      title: "Java",
+      courses: [
+        "Java For Beginners",
+        "Java Expert",
+        "Java Full Stack + ReactJS",
+        "Java Full Stack + ReactJS + DSA",
+        "Spring Boot & Microservices Security With Hibernate & JPA"
+      ]
+    },
+    webDevelopment: {
+      title: "Web Designing - Full Stack Development",
+      courses: [
+        "HTML, CSS & JavaScript",
+        "React JS Development",
+        "Node.js & Express",
+        "MERN Stack Development",
+        "Django Backend Development",
+        "Full Stack Web Development"
+      ]
+    },
+    programming: {
       title: "Programming",
-      items: ["Java", "Python", "C++", "C"]
+      courses: [
+        "C Programming",
+        "C++ Programming",
+        "Python Programming",
+        "Data Structures & Algorithms",
+        "Object-Oriented Programming"
+      ]
     },
-    {
-      title: "Web Development - Frontend",
-      items: ["React", "HTML", "CSS", "JavaScript", "Tailwind"]
+    digitalMarketing: {
+      title: "Digital Marketing",
+      courses: [
+        "SEO - Search Engine Optimization",
+        "Social Media Marketing",
+        "Google Ads & PPC",
+        "Content Marketing",
+        "Email Marketing"
+      ]
     },
-    {
-      title: "Web Development - Backend",
-      items: ["Django", "Node.js", "Express.js"]
+    graphicsDesigning: {
+      title: "Graphics Designing",
+      courses: [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "CorelDRAW",
+        "UI/UX Design",
+        "Video Editing"
+      ]
     },
-    {
-      title: "Networking & Certifications",
-      items: ["Cisco CCNA", "Microsoft MCSA", "Red Hat Linux"]
+    cadTraining: {
+      title: "CAD Training",
+      courses: [
+        "AutoCAD 2D & 3D",
+        "SolidWorks",
+        "CATIA",
+        "Revit Architecture",
+        "3D Max"
+      ]
+    },
+    appDevelopment: {
+      title: "App Development",
+      courses: [
+        "Android Development",
+        "iOS Development",
+        "React Native",
+        "Flutter Development",
+        "Mobile App UI/UX"
+      ]
+    },
+    erp: {
+      title: "ERP",
+      courses: [
+        "SAP",
+        "Oracle ERP",
+        "Tally ERP",
+        "Microsoft Dynamics",
+        "ERP Implementation"
+      ]
+    },
+    softwareTesting: {
+      title: "Software Testing",
+      courses: [
+        "Manual Testing",
+        "Automation Testing - Selenium",
+        "API Testing",
+        "Performance Testing",
+        "Mobile App Testing"
+      ]
+    },
+    networkSecurity: {
+      title: "Network & Security",
+      courses: [
+        "CCNA - Cisco Certified",
+        "CCNP - Advanced Networking",
+        "Ethical Hacking",
+        "Cyber Security",
+        "Network Administration"
+      ]
+    },
+    cloudComputing: {
+      title: "Cloud Computing",
+      courses: [
+        "AWS Cloud",
+        "Microsoft Azure",
+        "Google Cloud Platform",
+        "DevOps",
+        "Cloud Architecture"
+      ]
+    },
+    database: {
+      title: "Database",
+      courses: [
+        "SQL & MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "Oracle Database",
+        "Database Administration"
+      ]
+    },
+    mis: {
+      title: "MIS - Advanced Excel - BI Tools",
+      courses: [
+        "Advanced Excel & VBA",
+        "Power BI",
+        "Tableau",
+        "Data Analytics",
+        "Business Intelligence"
+      ]
+    },
+    others: {
+      title: "Others",
+      courses: [
+        "Machine Learning",
+        "Artificial Intelligence",
+        "Data Science",
+        "Blockchain",
+        "IoT - Internet of Things"
+      ]
     }
-  ];
+  };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -49,7 +175,7 @@ const Navbar = () => {
               About
             </Link>
             
-            {/* Courses Dropdown */}
+            {/* Courses Mega Menu Dropdown */}
             <div 
               className="relative"
               onMouseEnter={() => setCourseDropdown(true)}
@@ -67,27 +193,56 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-[600px] bg-white rounded-lg shadow-2xl p-6 grid grid-cols-2 gap-6"
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[800px] bg-white rounded-lg shadow-2xl overflow-hidden"
                   >
-                    {courseCategories.map((category, idx) => (
-                      <div key={idx} className="space-y-2">
-                        <h3 className="font-semibold text-primary text-sm uppercase">
-                          {category.title}
+                    <div className="flex">
+                      {/* Left Sidebar - Categories */}
+                      <div className="w-80 bg-primary text-white p-4 max-h-[500px] overflow-y-auto">
+                        <h3 className="text-xs font-semibold uppercase mb-3 opacity-75">
+                          Course Categories
                         </h3>
                         <ul className="space-y-1">
-                          {category.items.map((item, i) => (
-                            <li key={i}>
-                              <Link 
-                                to="/courses" 
-                                className="text-gray-600 hover:text-secondary text-sm hover:translate-x-1 inline-block transition-all"
+                          {Object.keys(courseCategories).map((key) => (
+                            <li key={key}>
+                              <button
+                                onMouseEnter={() => setSelectedCategory(key)}
+                                className={`w-full text-left px-4 py-3 rounded-lg transition-all ${
+                                  selectedCategory === key
+                                    ? 'bg-white text-primary font-semibold'
+                                    : 'hover:bg-blue-700 text-white'
+                                }`}
                               >
-                                {item}
-                              </Link>
+                                {courseCategories[key].title}
+                              </button>
                             </li>
                           ))}
                         </ul>
                       </div>
-                    ))}
+
+                      {/* Right Side - Subcourses */}
+                      <div className="flex-1 p-6 bg-gray-50 max-h-[500px] overflow-y-auto">
+                        <h3 className="text-lg font-bold text-gray-800 mb-4 border-b pb-2">
+                          {courseCategories[selectedCategory].title}
+                        </h3>
+                        <ul className="space-y-2">
+                          {courseCategories[selectedCategory].courses.map((course, idx) => (
+                            <motion.li
+                              key={idx}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: idx * 0.03 }}
+                            >
+                              <Link 
+                                to="/courses" 
+                                className="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white rounded-lg transition-all text-sm"
+                              >
+                                {course}
+                              </Link>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
