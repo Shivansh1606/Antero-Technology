@@ -7,18 +7,19 @@ const Footer = () => {
   const quickLinks = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
-    { name: "Courses", path: "/courses" },
+    { name: "Training", path: "/training" },
+    { name: "Services", path: "/services" },
     { name: "Placement", path: "/placement" },
     { name: "Contact", path: "/contact" }
   ];
 
-  const popularCourses = [
-    "Java Programming",
-    "Python Development",
-    "React JS",
-    "Django Backend",
-    "Cisco CCNA",
-    "Red Hat Linux"
+  const popularTraining = [
+    "CCNA Certification",
+    "CCNP Enterprise",
+    "Microsoft MCSA",
+    "Red Hat RHCSA",
+    "Network Security",
+    "Hardware Maintenance"
   ];
 
   return (
@@ -28,14 +29,21 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">A</span>
-              </div>
-              <span className="text-xl font-bold text-white">Antero Technology</span>
-            </div>
+<div className="flex items-center space-x-3 mb-4">
+  <div className="w-10 h-10 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+    <img
+      src="/logo.jpg"
+      alt="Antero Technology Logo"
+      className="w-full h-full object-contain"
+    />
+  </div>
+  <span className="text-xl font-bold text-white">
+    Antero Technology
+  </span>
+</div>
+
             <p className="text-sm mb-4">
-              Premier technology training provider registered under MSME Government of India. 
+              Premier hardware and networking training provider registered under MSME Government of India. 
               Empowering careers through quality education.
             </p>
             <div className="flex space-x-4">
@@ -71,17 +79,17 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Popular Courses */}
+          {/* Popular Training */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Popular Courses</h3>
+            <h3 className="text-white font-bold text-lg mb-4">Popular Training</h3>
             <ul className="space-y-2">
-              {popularCourses.map((course, index) => (
+              {popularTraining.map((training, index) => (
                 <li key={index}>
                   <Link 
-                    to="/courses"
+                    to="/training"
                     className="hover:text-primary transition-colors text-sm"
                   >
-                    {course}
+                    {training}
                   </Link>
                 </li>
               ))}

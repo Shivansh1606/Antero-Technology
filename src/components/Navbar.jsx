@@ -5,149 +5,51 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [courseDropdown, setCourseDropdown] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('programming');
+  const [trainingDropdown, setTrainingDropdown] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('cisco');
 
-  const courseCategories = {
-    java: {
-      title: "Java",
+  const trainingCategories = {
+    cisco: {
+      title: "Cisco Certifications",
       courses: [
-        "Java For Beginners",
-        "Java Expert",
-        "Java Full Stack + ReactJS",
-        "Java Full Stack + ReactJS + DSA",
-        "Spring Boot & Microservices Security With Hibernate & JPA"
+        "CCNA - Cisco Certified Network Associate",
+        "CCNP Enterprise (Routing & Switching)",
+        "CCNP Security",
+        "CCIE - Expert Level"
       ]
     },
-    webDevelopment: {
-      title: "Web Designing - Full Stack Development",
+    microsoft: {
+      title: "Microsoft Certifications",
       courses: [
-        "HTML, CSS & JavaScript",
-        "React JS Development",
-        "Node.js & Express",
-        "MERN Stack Development",
-        "Django Backend Development",
-        "Full Stack Web Development"
+        "MCSA - Microsoft Certified Solutions Associate",
+        "MCSE - Server Infrastructure",
+        "Microsoft Azure Administrator",
+        "Exchange Server Administration"
       ]
     },
-    programming: {
-      title: "Programming",
+    redhat: {
+      title: "Red Hat Linux",
       courses: [
-        "C Programming",
-        "C++ Programming",
-        "Python Programming",
-        "Data Structures & Algorithms",
-        "Object-Oriented Programming"
+        "RHCSA - Red Hat Certified System Administrator",
+        "RHCE - Red Hat Certified Engineer",
+        "Linux Server Administration"
       ]
     },
-    digitalMarketing: {
-      title: "Digital Marketing",
+    networking: {
+      title: "Networking Technologies",
       courses: [
-        "SEO - Search Engine Optimization",
-        "Social Media Marketing",
-        "Google Ads & PPC",
-        "Content Marketing",
-        "Email Marketing"
+        "Core Networking Fundamentals",
+        "Network Security & Firewall",
+        "Wireless Network Technology",
+        "VOIP Solutions"
       ]
     },
-    graphicsDesigning: {
-      title: "Graphics Designing",
+    hardware: {
+      title: "Hardware Training",
       courses: [
-        "Adobe Photoshop",
-        "Adobe Illustrator",
-        "CorelDRAW",
-        "UI/UX Design",
-        "Video Editing"
-      ]
-    },
-    cadTraining: {
-      title: "CAD Training",
-      courses: [
-        "AutoCAD 2D & 3D",
-        "SolidWorks",
-        "CATIA",
-        "Revit Architecture",
-        "3D Max"
-      ]
-    },
-    appDevelopment: {
-      title: "App Development",
-      courses: [
-        "Android Development",
-        "iOS Development",
-        "React Native",
-        "Flutter Development",
-        "Mobile App UI/UX"
-      ]
-    },
-    erp: {
-      title: "ERP",
-      courses: [
-        "SAP",
-        "Oracle ERP",
-        "Tally ERP",
-        "Microsoft Dynamics",
-        "ERP Implementation"
-      ]
-    },
-    softwareTesting: {
-      title: "Software Testing",
-      courses: [
-        "Manual Testing",
-        "Automation Testing - Selenium",
-        "API Testing",
-        "Performance Testing",
-        "Mobile App Testing"
-      ]
-    },
-    networkSecurity: {
-      title: "Network & Security",
-      courses: [
-        "CCNA - Cisco Certified",
-        "CCNP - Advanced Networking",
-        "Ethical Hacking",
-        "Cyber Security",
-        "Network Administration"
-      ]
-    },
-    cloudComputing: {
-      title: "Cloud Computing",
-      courses: [
-        "AWS Cloud",
-        "Microsoft Azure",
-        "Google Cloud Platform",
-        "DevOps",
-        "Cloud Architecture"
-      ]
-    },
-    database: {
-      title: "Database",
-      courses: [
-        "SQL & MySQL",
-        "PostgreSQL",
-        "MongoDB",
-        "Oracle Database",
-        "Database Administration"
-      ]
-    },
-    mis: {
-      title: "MIS - Advanced Excel - BI Tools",
-      courses: [
-        "Advanced Excel & VBA",
-        "Power BI",
-        "Tableau",
-        "Data Analytics",
-        "Business Intelligence"
-      ]
-    },
-    others: {
-      title: "Others",
-      courses: [
-        "Machine Learning",
-        "Artificial Intelligence",
-        "Data Science",
-        "Blockchain",
-        "IoT - Internet of Things"
+        "Computer Hardware & Maintenance",
+        "Server Hardware & Configuration",
+        "Laptop Chip Level Repairing"
       ]
     }
   };
@@ -156,76 +58,84 @@ const Navbar = () => {
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">A</span>
-            </div>
-            <span className="text-xl font-bold text-gray-800">
-              Antero Technology
-            </span>
-          </Link>
+{/* Logo */}
+<Link to="/" className="flex items-center space-x-3">
+  <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-white">
+    <img
+      src="/logo.jpg"
+      alt="Antero Technology Logo"
+      className="w-full h-full object-contain"
+    />
+  </div>
+  <div className="flex flex-col">
+    <span className="text-lg font-bold text-gray-800 leading-tight">
+      Antero Technology
+    </span>
+    <span className="text-xs text-gray-500">MSME Registered</span>
+  </div>
+</Link>
+
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <Link to="/" className="text-gray-700 hover:text-primary transition-colors font-medium">
               Home
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-primary transition-colors font-medium">
+                        <Link to="/about" className="text-gray-700 hover:text-primary transition-colors font-medium">
               About
             </Link>
             
-            {/* Courses Mega Menu Dropdown */}
+            {/* Training Mega Menu Dropdown */}
             <div 
               className="relative"
-              onMouseEnter={() => setCourseDropdown(true)}
-              onMouseLeave={() => setCourseDropdown(false)}
+              onMouseEnter={() => setTrainingDropdown(true)}
+              onMouseLeave={() => setTrainingDropdown(false)}
             >
               <button className="text-gray-700 hover:text-primary transition-colors font-medium flex items-center gap-1">
-                Courses
+                Training
                 <ChevronDown className="w-4 h-4" />
               </button>
 
               <AnimatePresence>
-                {courseDropdown && (
+                {trainingDropdown && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[800px] bg-white rounded-lg shadow-2xl overflow-hidden"
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[750px] bg-white rounded-lg shadow-2xl overflow-hidden border-t-4 border-primary"
                   >
                     <div className="flex">
                       {/* Left Sidebar - Categories */}
-                      <div className="w-80 bg-primary text-white p-4 max-h-[500px] overflow-y-auto">
-                        <h3 className="text-xs font-semibold uppercase mb-3 opacity-75">
-                          Course Categories
+                      <div className="w-72 bg-gradient-to-br from-primary to-blue-800 text-white p-4 max-h-[450px] overflow-y-auto">
+                        <h3 className="text-xs font-semibold uppercase mb-4 opacity-75 tracking-wider">
+                          Training Programs
                         </h3>
                         <ul className="space-y-1">
-                          {Object.keys(courseCategories).map((key) => (
+                          {Object.keys(trainingCategories).map((key) => (
                             <li key={key}>
                               <button
                                 onMouseEnter={() => setSelectedCategory(key)}
-                                className={`w-full text-left px-4 py-3 rounded-lg transition-all ${
+                                className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm ${
                                   selectedCategory === key
-                                    ? 'bg-white text-primary font-semibold'
+                                    ? 'bg-white text-primary font-semibold shadow-lg'
                                     : 'hover:bg-blue-700 text-white'
                                 }`}
                               >
-                                {courseCategories[key].title}
+                                {trainingCategories[key].title}
                               </button>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Right Side - Subcourses */}
-                      <div className="flex-1 p-6 bg-gray-50 max-h-[500px] overflow-y-auto">
-                        <h3 className="text-lg font-bold text-gray-800 mb-4 border-b pb-2">
-                          {courseCategories[selectedCategory].title}
+                      {/* Right Side - Courses */}
+                      <div className="flex-1 p-6 bg-gray-50 max-h-[450px] overflow-y-auto">
+                        <h3 className="text-xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-primary">
+                          {trainingCategories[selectedCategory].title}
                         </h3>
                         <ul className="space-y-2">
-                          {courseCategories[selectedCategory].courses.map((course, idx) => (
+                          {trainingCategories[selectedCategory].courses.map((course, idx) => (
                             <motion.li
                               key={idx}
                               initial={{ opacity: 0, x: -10 }}
@@ -233,10 +143,13 @@ const Navbar = () => {
                               transition={{ delay: idx * 0.03 }}
                             >
                               <Link 
-                                to="/courses" 
-                                className="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white rounded-lg transition-all text-sm"
+                                to="/training" 
+                                className="block px-4 py-3 text-gray-700 hover:bg-primary hover:text-white rounded-lg transition-all text-sm font-medium group"
                               >
-                                {course}
+                                <span className="flex items-center gap-2">
+                                  <span className="w-2 h-2 bg-secondary rounded-full group-hover:bg-white"></span>
+                                  {course}
+                                </span>
                               </Link>
                             </motion.li>
                           ))}
@@ -248,13 +161,17 @@ const Navbar = () => {
               </AnimatePresence>
             </div>
 
+
+            <Link to="/services" className="text-gray-700 hover:text-primary transition-colors font-medium">
+              Services
+            </Link>
             <Link to="/placement" className="text-gray-700 hover:text-primary transition-colors font-medium">
               Placement
             </Link>
           </div>
 
           {/* Contact Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link 
               to="/contact"
               className="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all"
@@ -265,7 +182,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-gray-700"
+            className="lg:hidden text-gray-700"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -279,21 +196,24 @@ const Navbar = () => {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="md:hidden pb-4 overflow-hidden"
+              className="lg:hidden pb-4 overflow-hidden"
             >
-              <Link to="/" className="block py-2 text-gray-700 hover:text-primary">
+              <Link to="/" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
                 Home
               </Link>
-              <Link to="/about" className="block py-2 text-gray-700 hover:text-primary">
+              <Link to="/training" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
+                Training
+              </Link>
+              <Link to="/about" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
                 About
               </Link>
-              <Link to="/courses" className="block py-2 text-gray-700 hover:text-primary">
-                Courses
+              <Link to="/services" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
+                Services
               </Link>
-              <Link to="/placement" className="block py-2 text-gray-700 hover:text-primary">
+              <Link to="/placement" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
                 Placement
               </Link>
-              <Link to="/contact" className="block py-2 text-primary font-semibold">
+              <Link to="/contact" className="block py-2 text-primary font-semibold" onClick={() => setIsOpen(false)}>
                 Contact Us
               </Link>
             </motion.div>
