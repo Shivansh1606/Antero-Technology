@@ -91,7 +91,6 @@ const Navbar = () => {
               <span className="text-lg font-bold text-gray-800 leading-tight">
                 Antero Technology
               </span>
-              <span className="text-xs text-gray-500">MSME Registered</span>
             </div>
           </Link>
 
@@ -202,6 +201,12 @@ const Navbar = () => {
             <Link to="/placement" className="text-gray-700 hover:text-primary transition-colors font-medium">
               Placement
             </Link>
+            <Link to="/career" className="text-gray-700 hover:text-primary transition-colors font-medium">
+              Career
+            </Link>
+            <Link to="/partners" className="text-gray-700 hover:text-primary transition-colors font-medium">
+              Partners
+            </Link>
           </div>
 
           {/* Contact Button */}
@@ -295,6 +300,12 @@ const Navbar = () => {
               </Link>
               <Link to="/placement" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
                 Placement
+              </Link>
+              <Link to="/career" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
+                Career
+              </Link>
+              <Link to="/partners" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
+                Partners
               </Link>
               <Link to="/contact" className="block py-2 text-primary font-semibold" onClick={() => setIsOpen(false)}>
                 Contact Us

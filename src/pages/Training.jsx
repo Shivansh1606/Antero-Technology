@@ -59,9 +59,7 @@ const Training = () => {
             transition={{ delay: 0.2 }}
             className="inline-block mb-6"
           >
-            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-6 py-3 rounded-full text-sm font-bold shadow-lg">
-              ✓ MSME Registered Training Institute
-            </span>
+
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">

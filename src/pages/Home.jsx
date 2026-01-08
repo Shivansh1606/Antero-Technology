@@ -78,7 +78,7 @@ const certifications = [
     topics: ["Windows Server", "Active Directory", "PowerShell"],
     color: "from-green-500 to-green-600",
     bgColor: "bg-green-50",
-    logo: "https://logotyp.us/file/cisco.svg"
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ9Nzs4SiiuIppGOTKQM9uscOBmfVg42rYTA&s"
   },
   { 
     name: "Microsoft MCSE",
@@ -88,7 +88,7 @@ const certifications = [
     topics: ["Cloud Infrastructure", "Data Management", "Server Admin"],
     color: "from-green-600 to-green-700",
     bgColor: "bg-green-50",
-    logo: "https://logotyp.us/file/cisco.svg"
+    logo: "https://msblogs.thesourcemediaassets.com/2012/08/8867.Microsoft_5F00_Logo_2D00_for_2D00_screen-1024x376.jpg"
   },
   { 
     name: "Red Hat RHCSA",
@@ -98,7 +98,7 @@ const certifications = [
     topics: ["Linux Admin", "System Config", "Command Line"],
     color: "from-red-500 to-red-600",
     bgColor: "bg-red-50",
-    logo: "https://logotyp.us/file/cisco.svg"
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ioaejeau6xcD67svCUY1JnGpVG8slFcsGw&s"
   },
   { 
     name: "Red Hat RHCE",
@@ -108,7 +108,7 @@ const certifications = [
     topics: ["Advanced Linux", "Automation", "Network Services"],
     color: "from-red-600 to-red-700",
     bgColor: "bg-red-50",
-    logo: "https://logotyp.us/file/cisco.svg"
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ioaejeau6xcD67svCUY1JnGpVG8slFcsGw&s"
   },
   { 
     name: "CompTIA Network+",
@@ -118,7 +118,7 @@ const certifications = [
     topics: ["Network Fundamentals", "Infrastructure", "Operations"],
     color: "from-purple-500 to-purple-600",
     bgColor: "bg-purple-50",
-    logo: "https://logotyp.us/file/cisco.svg"
+    logo: "https://www.trainotracksolutions.com/assets/img/Comptia/network-plus.webp"
   },
   { 
     name: "CompTIA Security+",
@@ -128,7 +128,7 @@ const certifications = [
     topics: ["Cybersecurity", "Threat Management", "Risk Assessment"],
     color: "from-purple-600 to-purple-700",
     bgColor: "bg-purple-50",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV5GDEj1H2_ggYORtbM3wlBo966xt6BYLdpw&s"
+    logo: "https://www.trainotracksolutions.com/assets/img/Comptia/network-plus.webp"
   }
 ];
 
@@ -158,9 +158,7 @@ const certifications = [
                 transition={{ delay: 0.2, duration: 0.8 }}
                 className="inline-block"
               >
-                <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-5 py-2 rounded-full text-sm font-bold shadow-lg">
-                  ✓ MSME Registered - Govt. of India
-                </span>
+
               </motion.div>
 
               <motion.h1 

@@ -10,6 +10,8 @@ const Footer = () => {
     { name: "Training", path: "/training" },
     { name: "Services", path: "/services" },
     { name: "Placement", path: "/placement" },
+    { name: "Career", path: "/career" },
+    { name: "Partners", path: "/partners" },
     { name: "Contact", path: "/contact" }
   ];
 
@@ -56,8 +58,7 @@ const Footer = () => {
             </div>
 
             <p className="text-sm mb-4 leading-relaxed">
-              Premier hardware and networking training provider registered under MSME Government of India. 
-              Empowering careers through quality education and industry-ready skills.
+              Antero Technology Group provides industry-standard training in Cisco, Microsoft, and Red Hat technologies, helping organizations recruit skilled and job-ready professionals for today’s evolving IT landscape.
             </p>
 
             <div className="flex space-x-4">
@@ -156,7 +157,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="md:flex md:items-center md:justify-between text-sm">
             <p className="text-center md:text-left">
-              © {currentYear} Antero Technology Group. All rights reserved. | Registered under MSME Govt. of India
+              © {currentYear} Antero Technology Group. All rights reserved. | Registered under  Govt. of India
             </p>
             <div className="flex justify-center md:justify-end space-x-6 mt-4 md:mt-0">
               <Link 
