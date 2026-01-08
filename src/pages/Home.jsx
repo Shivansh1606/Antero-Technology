@@ -16,10 +16,10 @@ const Home = () => {
   };
 
   const stats = [
-    { icon: <Users className="w-8 h-8" />, value: "10,000+", label: "Students Trained" },
+    { icon: <Users className="w-8 h-8" />, value: "5,000+", label: "Students Trained" },
     { icon: <Award className="w-8 h-8" />, value: "25+", label: "Certifications" },
     { icon: <Briefcase className="w-8 h-8" />, value: "95%", label: "Placement Rate" },
-    { icon: <TrendingUp className="w-8 h-8" />, value: "500+", label: "Partner Companies" },
+    { icon: <TrendingUp className="w-8 h-8" />, value: "50+", label: "Partner Companies" },
   ];
 
   const services = [
