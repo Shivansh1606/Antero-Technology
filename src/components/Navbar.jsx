@@ -1,41 +1,46 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [trainingDropdown, setTrainingDropdown] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('cisco');
+  const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const navigate = useNavigate();
 
-  const trainingCategories = {
-    cisco: {
+  const trainingCategories = [
+    {
+      id: 'cisco',
       title: "Cisco Certifications",
       courses: [
-        "CCNA - Cisco Certified Network Associate",
+        "CCNA - Network Associate",
         "CCNP Enterprise (Routing & Switching)",
         "CCNP Security",
         "CCIE - Expert Level"
       ]
     },
-    microsoft: {
+    {
+      id: 'microsoft',
       title: "Microsoft Certifications",
       courses: [
-        "MCSA - Microsoft Certified Solutions Associate",
+        "MCSA - Solutions Associate",
         "MCSE - Server Infrastructure",
         "Microsoft Azure Administrator",
         "Exchange Server Administration"
       ]
     },
-    redhat: {
+    {
+      id: 'redhat',
       title: "Red Hat Linux",
       courses: [
-        "RHCSA - Red Hat Certified System Administrator",
-        "RHCE - Red Hat Certified Engineer",
+        "RHCSA - System Administrator",
+        "RHCE - Certified Engineer",
         "Linux Server Administration"
       ]
     },
-    networking: {
+    {
+      id: 'networking',
       title: "Networking Technologies",
       courses: [
         "Core Networking Fundamentals",
@@ -44,56 +49,73 @@ const Navbar = () => {
         "VOIP Solutions"
       ]
     },
-    hardware: {
+    {
+      id: 'hardware',
       title: "Hardware Training",
       courses: [
         "Computer Hardware & Maintenance",
-        "Server Hardware & Configuration",
+        "Server Hardware Configuration",
         "Laptop Chip Level Repairing"
       ]
     }
+  ];
+
+  const handleCategoryClick = (e) => {
+    e.preventDefault();
+    setTrainingDropdown(false);
+    setActiveSubmenu(null);
+    navigate('/training');
+  };
+
+  const handleCourseClick = (e) => {
+    e.preventDefault();
+    setTrainingDropdown(false);
+    setActiveSubmenu(null);
+    navigate('/training');
   };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-{/* Logo */}
-<Link to="/" className="flex items-center space-x-3">
-  <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-white">
-    <img
-      src="/logo.jpg"
-      alt="Antero Technology Logo"
-      className="w-full h-full object-contain"
-    />
-  </div>
-  <div className="flex flex-col">
-    <span className="text-lg font-bold text-gray-800 leading-tight">
-      Antero Technology
-    </span>
-    <span className="text-xs text-gray-500">MSME Registered</span>
-  </div>
-</Link>
-
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-white">
+              <img
+                src="/logo.jpg"
+                alt="Antero Technology Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-bold text-gray-800 leading-tight">
+                Antero Technology
+              </span>
+              <span className="text-xs text-gray-500">MSME Registered</span>
+            </div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
             <Link to="/" className="text-gray-700 hover:text-primary transition-colors font-medium">
               Home
             </Link>
-                        <Link to="/about" className="text-gray-700 hover:text-primary transition-colors font-medium">
+            <Link to="/about" className="text-gray-700 hover:text-primary transition-colors font-medium">
               About
             </Link>
             
-            {/* Training Mega Menu Dropdown */}
+            {/* WORKING MULTI-LEVEL DROPDOWN */}
             <div 
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setTrainingDropdown(true)}
-              onMouseLeave={() => setTrainingDropdown(false)}
+              onMouseLeave={() => {
+                setTrainingDropdown(false);
+                setActiveSubmenu(null);
+              }}
             >
               <button className="text-gray-700 hover:text-primary transition-colors font-medium flex items-center gap-1">
                 Training
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className={`w-4 h-4 transition-transform ${trainingDropdown ? 'rotate-180' : ''}`} />
               </button>
 
               <AnimatePresence>
@@ -103,64 +125,76 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[750px] bg-white rounded-lg shadow-2xl overflow-hidden border-t-4 border-primary"
+                    className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl overflow-hidden border border-gray-100"
                   >
-                    <div className="flex">
-                      {/* Left Sidebar - Categories */}
-                      <div className="w-72 bg-gradient-to-br from-primary to-blue-800 text-white p-4 max-h-[450px] overflow-y-auto">
-                        <h3 className="text-xs font-semibold uppercase mb-4 opacity-75 tracking-wider">
-                          Training Programs
-                        </h3>
-                        <ul className="space-y-1">
-                          {Object.keys(trainingCategories).map((key) => (
-                            <li key={key}>
-                              <button
-                                onMouseEnter={() => setSelectedCategory(key)}
-                                className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm ${
-                                  selectedCategory === key
-                                    ? 'bg-white text-primary font-semibold shadow-lg'
-                                    : 'hover:bg-blue-700 text-white'
-                                }`}
-                              >
-                                {trainingCategories[key].title}
-                              </button>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    {trainingCategories.map((category, index) => (
+                      <div 
+                        key={category.id}
+                        className="relative"
+                      >
+                        {/* Main Category - CLICKABLE */}
+                        <button
+                          onClick={handleCategoryClick}
+                          onMouseEnter={() => setActiveSubmenu(category.id)}
+                          className="w-full px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer flex items-center justify-between group/item text-left"
+                        >
+                          <span className="text-gray-700 font-medium group-hover/item:text-primary">
+                            {category.title}
+                          </span>
+                          <ChevronRight className="w-4 h-4 text-gray-400 group-hover/item:text-primary" />
+                        </button>
 
-                      {/* Right Side - Courses */}
-                      <div className="flex-1 p-6 bg-gray-50 max-h-[450px] overflow-y-auto">
-                        <h3 className="text-xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-primary">
-                          {trainingCategories[selectedCategory].title}
-                        </h3>
-                        <ul className="space-y-2">
-                          {trainingCategories[selectedCategory].courses.map((course, idx) => (
-                            <motion.li
-                              key={idx}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: idx * 0.03 }}
-                            >
-                              <Link 
-                                to="/training" 
-                                className="block px-4 py-3 text-gray-700 hover:bg-primary hover:text-white rounded-lg transition-all text-sm font-medium group"
-                              >
-                                <span className="flex items-center gap-2">
-                                  <span className="w-2 h-2 bg-secondary rounded-full group-hover:bg-white"></span>
-                                  {course}
-                                </span>
-                              </Link>
-                            </motion.li>
-                          ))}
-                        </ul>
+                        {/* Courses Submenu on Hover */}
+                        {activeSubmenu === category.id && (
+                          <div
+                            className="absolute left-full top-0 ml-1 w-80 bg-white rounded-lg shadow-2xl border border-gray-100 z-50"
+                            onMouseEnter={() => setActiveSubmenu(category.id)}
+                            onMouseLeave={() => setActiveSubmenu(null)}
+                          >
+                            {/* Header */}
+                            <div className="bg-gradient-to-r from-primary to-blue-700 px-4 py-3">
+                              <h4 className="font-bold text-white text-sm">{category.title}</h4>
+                            </div>
+                            
+                            {/* Courses List - ALL CLICKABLE */}
+                            <div className="p-2 max-h-96 overflow-y-auto">
+                              {category.courses.map((course, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={handleCourseClick}
+                                  className="w-full text-left block px-4 py-3 text-gray-700 hover:bg-primary hover:text-white rounded-md transition-all text-sm group/course"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-primary rounded-full group-hover/course:bg-white"></span>
+                                    <span>{course}</span>
+                                  </div>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Separator */}
+                        {index < trainingCategories.length - 1 && (
+                          <div className="border-b border-gray-100"></div>
+                        )}
                       </div>
-                    </div>
+                    ))}
+                    
+                    {/* View All Link - CLICKABLE */}
+                    <button
+                      onClick={handleCategoryClick}
+                      className="w-full text-left block bg-gray-50 px-4 py-3 border-t border-gray-200 hover:bg-gray-100 transition-colors"
+                    >
+                      <span className="text-primary font-semibold text-sm flex items-center gap-1">
+                        View All Training Programs
+                        <ChevronRight className="w-4 h-4" />
+                      </span>
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-
 
             <Link to="/services" className="text-gray-700 hover:text-primary transition-colors font-medium">
               Services
@@ -201,12 +235,61 @@ const Navbar = () => {
               <Link to="/" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
                 Home
               </Link>
-              <Link to="/training" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
-                Training
-              </Link>
               <Link to="/about" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
                 About
               </Link>
+              
+              {/* Mobile Training - CLICKABLE */}
+              <div className="py-2">
+                <button 
+                  className="w-full flex items-center justify-between text-gray-700 font-medium"
+                  onClick={() => setTrainingDropdown(!trainingDropdown)}
+                >
+                  Training
+                  <ChevronDown className={`w-4 h-4 transition-transform ${trainingDropdown ? 'rotate-180' : ''}`} />
+                </button>
+                {trainingDropdown && (
+                  <div className="pl-4 mt-2 space-y-3">
+                    {trainingCategories.map((category) => (
+                      <div key={category.id}>
+                        <button
+                          onClick={() => {
+                            navigate('/training');
+                            setIsOpen(false);
+                          }}
+                          className="text-sm font-semibold text-gray-800 hover:text-primary text-left w-full mb-2"
+                        >
+                          {category.title}
+                        </button>
+                        <div className="pl-3 space-y-1">
+                          {category.courses.map((course, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => {
+                                navigate('/training');
+                                setIsOpen(false);
+                              }}
+                              className="block text-sm text-gray-600 hover:text-primary py-1 text-left w-full"
+                            >
+                              • {course}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                    <button
+                      onClick={() => {
+                        navigate('/training');
+                        setIsOpen(false);
+                      }}
+                      className="block text-sm text-primary font-semibold pt-2 text-left w-full"
+                    >
+                      View All Programs →
+                    </button>
+                  </div>
+                )}
+              </div>
+
               <Link to="/services" className="block py-2 text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
                 Services
               </Link>
